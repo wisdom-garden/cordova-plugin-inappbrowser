@@ -891,6 +891,9 @@
 
 - (NSUInteger)supportedInterfaceOrientations
 {
+    if (_browserOptions.enablerotate) {
+        return UIInterfaceOrientationMaskAll;
+    }
     if ((self.orientationDelegate != nil) && [self.orientationDelegate respondsToSelector:@selector(supportedInterfaceOrientations)]) {
         return [self.orientationDelegate supportedInterfaceOrientations];
     }
@@ -917,6 +920,7 @@
         // default values
         self.location = YES;
         self.toolbar = YES;
+        self.enablerotate = NO;
         self.closebuttoncaption = nil;
         self.toolbarposition = kInAppBrowserToolbarBarPositionBottom;
         self.clearcache = NO;
