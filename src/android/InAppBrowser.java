@@ -1282,6 +1282,12 @@ public class InAppBrowser extends CordovaPlugin {
                 }
             } else if (url.startsWith("geo:") || url.startsWith(WebView.SCHEME_MAILTO) || url.startsWith("market:") || url.startsWith("intent:")) {
                 try {
+                    if(url.startsWith("intent:") && url.indexOf("connectpro") > -1){
+                        StringBuilder urlSb = new StringBuilder(url);
+                        urlSb.replace(0, 6, "connectpro");
+                        url = urlSb.toString();
+                    }
+
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse(url));
                     cordova.getActivity().startActivity(intent);
