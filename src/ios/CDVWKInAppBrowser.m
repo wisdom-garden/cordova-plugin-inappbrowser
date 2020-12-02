@@ -1099,7 +1099,8 @@ BOOL isExiting = FALSE;
     if ([url.scheme isEqualToString:@"file"]) {
         [self.webView loadFileURL:url allowingReadAccessToURL:url];
     } else {
-        NSURLRequest* request = [NSURLRequest requestWithURL:url];
+        NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
+        [request setValue:[@"session=" stringByAppendingString:_browserOptions.session] forHTTPHeaderField:@"Cookie"];
         [self.webView loadRequest:request];
     }
 }
