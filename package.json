@@ -1,6 +1,7 @@
 {
   "name": "cordova-plugin-inappbrowser",
   "version": "4.1.1-dev",
+  "wgVersoin": "1",
   "description": "Cordova InAppBrowser Plugin",
   "types": "./types/index.d.ts",
   "cordova": {
