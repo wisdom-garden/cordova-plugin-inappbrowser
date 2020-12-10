@@ -1100,7 +1100,11 @@ BOOL isExiting = FALSE;
         [self.webView loadFileURL:url allowingReadAccessToURL:url];
     } else {
         NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
-        [request setValue:[@"session=" stringByAppendingString:_browserOptions.session] forHTTPHeaderField:@"Cookie"];
+
+        if([_browserOptions.session isKindOfClass:[NSString class]]) {
+            [request setValue:[@"session=" stringByAppendingString:_browserOptions.session] forHTTPHeaderField:@"Cookie"];
+        }
+
         [self.webView loadRequest:request];
     }
 }
